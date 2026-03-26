@@ -10861,6 +10861,50 @@ export default {
         "location": "exchange-repair.ts",
         "module": () => import('@/routes/apple/exchange-repair.ts')
       },
+      "/newsroom": {
+        "path": "/newsroom",
+        "name": "Newsroom (中国大陆)",
+        "url": "www.apple.com.cn/newsroom",
+        "maintainers": [
+          "LinxHex"
+        ],
+        "example": "/apple/newsroom",
+        "description": "The official source for news about Apple, from Apple. Read press releases, get updates, watch video and download images.",
+        "categories": [
+          "new-media"
+        ],
+        "features": {
+          "requireConfig": false,
+          "requirePuppeteer": false,
+          "antiCrawler": false,
+          "supportRadar": true,
+          "supportBT": false,
+          "supportPodcast": false,
+          "supportScihub": false
+        },
+        "radar": [
+          {
+            "source": [
+              "www.apple.com.cn/newsroom",
+              "www.apple.com.cn/newsroom/:year/:month/:slug"
+            ],
+            "target": "/newsroom"
+          }
+        ],
+        "view": 0,
+        "zh": {
+          "path": "/newsroom",
+          "name": "新闻中心（中国大陆）",
+          "url": "www.apple.com.cn/newsroom",
+          "maintainers": [
+            "LinxHex"
+          ],
+          "example": "/apple/newsroom",
+          "description": "Apple 新闻中心是 Apple 新闻的来源。阅读新闻稿、获取最新消息、观看视频和下载图片。"
+        },
+        "location": "newsroom.ts",
+        "module": () => import('@/routes/apple/newsroom.ts')
+      },
       "/podcast/:id/:region?": {
         "path": "/podcast/:id/:region?",
         "categories": [
@@ -31658,8 +31702,8 @@ export default {
   },
   "cursor": {
     "routes": {
-      "/blog/:topic?": {
-        "path": "/blog/:topic?",
+      "/blog/:topic?/:locale?": {
+        "path": "/blog/:topic?/:locale?",
         "name": "Blog",
         "url": "cursor.com",
         "maintainers": [
@@ -31667,7 +31711,8 @@ export default {
         ],
         "example": "/cursor/blog",
         "parameters": {
-          "topic": "Optional topic: product | research | company | news"
+          "locale": "Locale appended to the route path, e.g. `ja`",
+          "topic": "Topic: all | product | research | company | news"
         },
         "categories": [
           "blog"
@@ -31684,18 +31729,35 @@ export default {
         "radar": [
           {
             "source": [
-              "cursor.com/blog",
+              "cursor.com/blog"
+            ],
+            "target": "/blog"
+          },
+          {
+            "source": [
               "cursor.com/blog/topic/:topic"
             ],
             "target": "/blog/:topic"
+          },
+          {
+            "source": [
+              "cursor.com/:locale/blog"
+            ],
+            "target": "/blog/all/:locale"
+          },
+          {
+            "source": [
+              "cursor.com/:locale/blog/topic/:topic"
+            ],
+            "target": "/blog/:topic/:locale"
           }
         ],
         "view": 0,
         "location": "blog.ts",
         "module": () => import('@/routes/cursor/blog.ts')
       },
-      "/changelog": {
-        "path": "/changelog",
+      "/changelog/:locale?": {
+        "path": "/changelog/:locale?",
         "name": "Changelog",
         "url": "cursor.com",
         "maintainers": [
@@ -31703,6 +31765,9 @@ export default {
           "nczitzk"
         ],
         "example": "/cursor/changelog",
+        "parameters": {
+          "locale": "Locale appended to the route path, e.g. `ja`"
+        },
         "categories": [
           "program-update"
         ],
@@ -31721,6 +31786,12 @@ export default {
               "cursor.com/changelog"
             ],
             "target": "/changelog"
+          },
+          {
+            "source": [
+              "cursor.com/:locale/changelog"
+            ],
+            "target": "/changelog/:locale"
           }
         ],
         "view": 0,
@@ -34673,6 +34744,40 @@ export default {
   },
   "dewu": {
     "routes": {
+      "/techblog/:categoryId?": {
+        "path": "/techblog/:categoryId?",
+        "categories": [
+          "programming"
+        ],
+        "example": "/dewu/techblog",
+        "parameters": {
+          "categoryId": "分类 ID，见下表，默认为全部"
+        },
+        "features": {
+          "requireConfig": false,
+          "requirePuppeteer": false,
+          "antiCrawler": false,
+          "supportBT": false,
+          "supportPodcast": false,
+          "supportScihub": false,
+          "supportRadar": true
+        },
+        "radar": [
+          {
+            "source": [
+              "tech.dewu.com/"
+            ],
+            "target": "/techblog"
+          }
+        ],
+        "name": "技术博客",
+        "maintainers": [
+          "zhenlohuang"
+        ],
+        "description": "| 分类 | ID |\n| --- | --- |\n| 大前端 | 1 |\n| Java | 2 |\n| 音视频 | 3 |\n| 测试 | 4 |\n| Golang | 5 |\n| AI&数据 | 6 |\n| 运维&稳定生产 | 7 |\n| 技术思考 | 8 |",
+        "location": "techblog.ts",
+        "module": () => import('@/routes/dewu/techblog.ts')
+      },
       "/declaration/:categoryId?": {
         "path": "/declaration/:categoryId?",
         "categories": [
@@ -66192,48 +66297,6 @@ export default {
         "location": "index.ts",
         "module": () => import('@/routes/iwara/index.ts')
       },
-      "/subscriptions": {
-        "path": "/subscriptions",
-        "categories": [
-          "anime"
-        ],
-        "example": "/iwara/subscriptions",
-        "parameters": {},
-        "features": {
-          "requireConfig": [
-            {
-              "name": "IWARA_USERNAME",
-              "description": ""
-            },
-            {
-              "name": "IWARA_PASSWORD",
-              "description": ""
-            }
-          ],
-          "requirePuppeteer": false,
-          "antiCrawler": false,
-          "supportBT": false,
-          "supportPodcast": false,
-          "supportScihub": false,
-          "nsfw": true
-        },
-        "radar": [
-          {
-            "source": [
-              "www.iwara.tv/subscriptions/videos",
-              "www.iwara.tv/subscriptions/images"
-            ]
-          }
-        ],
-        "name": "User Subscriptions",
-        "maintainers": [
-          "FeCCC"
-        ],
-        "url": "www.iwara.tv/",
-        "description": "::: warning\n  This route requires username and password, therefore it's only available when self-hosting, refer to the [Deploy Guide](https://docs.rsshub.app/deploy/config#route-specific-configurations) for route-specific configurations.\n:::",
-        "location": "subscriptions.ts",
-        "module": () => import('@/routes/iwara/subscriptions.ts')
-      },
       "/ranking/:type?/:sort?/:rating?": {
         "path": "/ranking/:type?/:sort?/:rating?",
         "example": "/iwara/ranking/video/date/ecchi",
@@ -66260,6 +66323,48 @@ export default {
         ],
         "location": "ranking.ts",
         "module": () => import('@/routes/iwara/ranking.ts')
+      },
+      "/subscriptions": {
+        "path": "/subscriptions",
+        "categories": [
+          "anime"
+        ],
+        "example": "/iwara/subscriptions",
+        "parameters": {},
+        "features": {
+          "requireConfig": [
+            {
+              "name": "IWARA_USERNAME",
+              "description": ""
+            },
+            {
+              "name": "IWARA_PASSWORD",
+              "description": ""
+            }
+          ],
+          "requirePuppeteer": true,
+          "antiCrawler": false,
+          "supportBT": false,
+          "supportPodcast": false,
+          "supportScihub": false,
+          "nsfw": true
+        },
+        "radar": [
+          {
+            "source": [
+              "www.iwara.tv/subscriptions/videos",
+              "www.iwara.tv/subscriptions/images"
+            ]
+          }
+        ],
+        "name": "User Subscriptions",
+        "maintainers": [
+          "FeCCC"
+        ],
+        "url": "www.iwara.tv/",
+        "description": "::: warning\n  This route requires username and password, therefore it's only available when self-hosting, refer to the [Deploy Guide](https://docs.rsshub.app/deploy/config#route-specific-configurations) for route-specific configurations.\n:::",
+        "location": "subscriptions.ts",
+        "module": () => import('@/routes/iwara/subscriptions.ts')
       }
     },
     "apiRoutes": {},
@@ -75127,7 +75232,7 @@ export default {
         "categories": [
           "social-media"
         ],
-        "example": "/likeshop/bloombergpursuits",
+        "example": "/likeshop/nytimes",
         "parameters": {
           "site": "the site attached to likeshop.me/"
         },
@@ -96991,6 +97096,39 @@ export default {
   },
   "perplexity": {
     "routes": {
+      "/blog": {
+        "path": "/blog",
+        "example": "/perplexity/blog",
+        "url": "www.perplexity.ai",
+        "categories": [
+          "blog"
+        ],
+        "parameters": {},
+        "features": {
+          "requireConfig": false,
+          "requirePuppeteer": true,
+          "antiCrawler": false,
+          "supportBT": false,
+          "supportPodcast": false,
+          "supportScihub": false
+        },
+        "radar": [
+          {
+            "source": [
+              "www.perplexity.ai/hub"
+            ],
+            "target": "/blog"
+          }
+        ],
+        "name": "Blog",
+        "maintainers": [
+          "seeyangzhi"
+        ],
+        "description": "Perplexity Blog - Explore Perplexity's blog for articles, announcements, product updates, and tips to optimize your experience. Stay informed and make the most of Perplexity.",
+        "view": 5,
+        "location": "blog.ts",
+        "module": () => import('@/routes/perplexity/blog.ts')
+      },
       "/changelog": {
         "path": "/changelog",
         "name": "Changelog",
@@ -133672,6 +133810,50 @@ export default {
     "name": "虎皮椒",
     "url": "www.xunhupay.com",
     "lang": "zh-CN"
+  },
+  "xupt": {
+    "routes": {
+      "/jyc/:type?": {
+        "path": "/jyc/:type?",
+        "categories": [
+          "university"
+        ],
+        "example": "/xupt/jyc",
+        "parameters": {
+          "type": "分类，默认为 tzgg（通知公告）"
+        },
+        "features": {
+          "requireConfig": false,
+          "requirePuppeteer": false,
+          "antiCrawler": false,
+          "supportBT": false,
+          "supportPodcast": false,
+          "supportScihub": false
+        },
+        "radar": [
+          {
+            "source": [
+              "jyc.xupt.edu.cn/index/tzgg.htm"
+            ],
+            "target": "/jyc/tzgg"
+          }
+        ],
+        "name": "教务处通知公告",
+        "maintainers": [
+          "StudyingLover"
+        ],
+        "description": "| 分类 | 参数 |\n| ---- | ---- |\n| 通知公告 | tzgg |",
+        "location": "jyc.ts",
+        "module": () => import('@/routes/xupt/jyc.ts')
+      }
+    },
+    "apiRoutes": {},
+    "name": "西安邮电大学",
+    "url": "xupt.edu.cn",
+    "description": "西安邮电大学教务处通知公告",
+    "zh": {
+      "name": "西安邮电大学"
+    }
   },
   "xwenming": {
     "routes": {

@@ -5575,6 +5575,20 @@
       }
     ]
   },
+  "apple.com.cn": {
+    "_name": "Apple",
+    "www": [
+      {
+        "title": "Newsroom (中国大陆)",
+        "docs": "https://docs.rsshub.app/routes/new-media",
+        "source": [
+          "/newsroom",
+          "/newsroom/:year/:month/:slug"
+        ],
+        "target": "/apple/newsroom"
+      }
+    ]
+  },
   "appleinsider.com": {
     "_name": "AppleInsider",
     ".": [
@@ -13267,10 +13281,33 @@
         "title": "Blog",
         "docs": "https://docs.rsshub.app/routes/blog",
         "source": [
-          "/blog",
+          "/blog"
+        ],
+        "target": "/cursor/blog"
+      },
+      {
+        "title": "Blog",
+        "docs": "https://docs.rsshub.app/routes/blog",
+        "source": [
           "/blog/topic/:topic"
         ],
         "target": "/cursor/blog/:topic"
+      },
+      {
+        "title": "Blog",
+        "docs": "https://docs.rsshub.app/routes/blog",
+        "source": [
+          "/:locale/blog"
+        ],
+        "target": "/cursor/blog/all/:locale"
+      },
+      {
+        "title": "Blog",
+        "docs": "https://docs.rsshub.app/routes/blog",
+        "source": [
+          "/:locale/blog/topic/:topic"
+        ],
+        "target": "/cursor/blog/:topic/:locale"
       },
       {
         "title": "Changelog",
@@ -13279,6 +13316,14 @@
           "/changelog"
         ],
         "target": "/cursor/changelog"
+      },
+      {
+        "title": "Changelog",
+        "docs": "https://docs.rsshub.app/routes/program-update",
+        "source": [
+          "/:locale/changelog"
+        ],
+        "target": "/cursor/changelog/:locale"
       }
     ]
   },
@@ -14419,6 +14464,19 @@
           "/"
         ],
         "target": "/devtrium/"
+      }
+    ]
+  },
+  "dewu.com": {
+    "_name": "得物",
+    "tech": [
+      {
+        "title": "技术博客",
+        "docs": "https://docs.rsshub.app/routes/programming",
+        "source": [
+          "/"
+        ],
+        "target": "/dewu/techblog"
       }
     ]
   },
@@ -25407,15 +25465,6 @@
     "_name": "iwara",
     "www": [
       {
-        "title": "User Subscriptions",
-        "docs": "https://docs.rsshub.app/routes/anime",
-        "source": [
-          "/subscriptions/videos",
-          "/subscriptions/images"
-        ],
-        "target": "/iwara/subscriptions"
-      },
-      {
         "title": "Ranking",
         "docs": "https://docs.rsshub.app/routes/anime",
         "source": [
@@ -25423,6 +25472,15 @@
           "/images"
         ],
         "target": "/iwara(params,url)=>{const searchParams=new URL(url).searchParams;const type=url.includes(\"/videos\")?\"video\":\"image\";const sort=searchParams.get(\"sort\")||\"date\";const rating=searchParams.get(\"rating\")||\"ecchi\";return`/iwara/ranking/${type}/${sort}/${rating}`}"
+      },
+      {
+        "title": "User Subscriptions",
+        "docs": "https://docs.rsshub.app/routes/anime",
+        "source": [
+          "/subscriptions/videos",
+          "/subscriptions/images"
+        ],
+        "target": "/iwara/subscriptions"
       }
     ]
   },
@@ -38075,6 +38133,14 @@
     "_name": "Perplexity",
     "www": [
       {
+        "title": "Blog",
+        "docs": "https://docs.rsshub.app/routes/blog",
+        "source": [
+          "/hub"
+        ],
+        "target": "/perplexity/blog"
+      },
+      {
         "title": "Changelog",
         "docs": "https://docs.rsshub.app/routes/program-update",
         "source": [
@@ -48480,6 +48546,19 @@
           "/blog"
         ],
         "target": "/xunhupay/blog"
+      }
+    ]
+  },
+  "xupt.edu.cn": {
+    "_name": "西安邮电大学",
+    "jyc": [
+      {
+        "title": "教务处通知公告",
+        "docs": "https://docs.rsshub.app/routes/university",
+        "source": [
+          "/index/tzgg.htm"
+        ],
+        "target": "/xupt/jyc/tzgg"
       }
     ]
   },

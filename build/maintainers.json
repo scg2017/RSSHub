@@ -625,6 +625,9 @@
     "HenryQW",
     "kt286"
   ],
+  "/apple/newsroom": [
+    "LinxHex"
+  ],
   "/apple/podcast/:id/:region?": [
     "Acring"
   ],
@@ -2072,10 +2075,10 @@
   "/curius/links/:name": [
     "Ovler-Young"
   ],
-  "/cursor/blog/:topic?": [
+  "/cursor/blog/:topic?/:locale?": [
     "johan456789"
   ],
-  "/cursor/changelog": [
+  "/cursor/changelog/:locale?": [
     "p3psi-boo",
     "nczitzk"
   ],
@@ -2264,6 +2267,9 @@
   ],
   "/devtrium/": [
     "Xy2002"
+  ],
+  "/dewu/techblog/:categoryId?": [
+    "zhenlohuang"
   ],
   "/dewu/declaration/:categoryId?": [
     "blade0910"
@@ -4733,11 +4739,11 @@
   "/iwara/users/:username/:type?": [
     "Fatpandac"
   ],
-  "/iwara/subscriptions": [
-    "FeCCC"
-  ],
   "/iwara/ranking/:type?/:sort?/:rating?": [
     "CaoMeiYouRen233"
+  ],
+  "/iwara/subscriptions": [
+    "FeCCC"
   ],
   "/ixigua/user/video/:uid/:disableEmbed?": [
     "FlashWingShadow",
@@ -6720,6 +6726,9 @@
   ],
   "/people/xjpjh/:keyword?/:year?": [],
   "/peopo/topic/:topicId?": [],
+  "/perplexity/blog": [
+    "seeyangzhi"
+  ],
   "/perplexity/changelog": [
     "xbot"
   ],
@@ -9479,6 +9488,9 @@
   ],
   "/xunhupay/blog": [
     "Joey"
+  ],
+  "/xupt/jyc/:type?": [
+    "StudyingLover"
   ],
   "/xwenming/:category?": [
     "nczitzk"
